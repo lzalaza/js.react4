@@ -1,38 +1,28 @@
-import axios from 'axios';
 import './App.css';
 import HeaderComponent from './components/HeaderComponent';
-import ProductsComponent from './components/HeaderComponent/ProductsComponent';
-import { useEffect, useState } from 'react';
+import AboutPage  from './pages/AboutPage';
+import  ContactPage  from './pages/ContactPage';
+import  HomePage  from './pages/HomePage';
+import  {CartPage}  from './pages/CartPage';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+
+
 
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [postsLenght, setPostsLngth] = useState(0);
-  const [loading,setLoading] = useState(true);
-
-  useEffect(()=>{
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then((response)=>{
-      setPosts(response.data)
-      setLoading(false)
-    })    
-    
-    .catch((error)=>{
-      console.log(error)
-      setLoading(false)
-    })
-
   
-},[])
-
-useEffect(()=>{
-  setPostsLngth(posts.length)
-}, [posts] )
 
 return (
   <div className="App">
-  <HeaderComponent postsLength={postsLenght}/>
-  <ProductsComponent posts={posts} postsLength={postsLenght}  loading={loading} setPosts={setPosts} />
+    <Router>
+  <HeaderComponent/>
+  <Routes>
+    <Route path="/" element={<HomePage />} />
+    <Route path="/about" element={<AboutPage />} />
+    <Route path="/contact" element={<ContactPage />} />
+    <Route path="/cart" element={<CartPage />} />
+  </Routes>
+</Router>
 </div>
 );
 }

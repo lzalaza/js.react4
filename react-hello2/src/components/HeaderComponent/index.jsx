@@ -1,22 +1,25 @@
 import React from 'react'
 import './HeaderComponent.css'
+import {Link} from 'react-router-dom';
 
 
-
-const HeaderComponent = ({postsLength}) => {
+const HeaderComponent = () => {
   return (
-    <div className='headercomponent'>
-      <div className='log'>LOGO</div>
+    <header>
+    <nav className='headercomponent'>
+      <div className='log'><img src="./logo192.png" width="50px"/></div>
       <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Contact</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/cart">Cart</Link></li>
       </ul>
-      <div className='all'>
+      {/*<div className='all'>
         All Items: {postsLength}
-      </div>
-    </div>
+      </div>*/}
+    </nav>
+    </header>
   )
 }
 
-export default HeaderComponent
+export default HeaderComponent;
