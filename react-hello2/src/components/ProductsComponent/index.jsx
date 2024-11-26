@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CartComponent from '../CartComponent';
 import './ProductsComponent.css';
 import { MoonLoader } from 'react-spinners';
 import { useSelector } from 'react-redux';
+import EmptyHeart from '../../assests/images/heartempty.png';
+import FilledHeart from '../../assests/images/heartfilled.png';
 
 
+const ProductsComponent = ({ postsLength, loading, setPosts}) => {
+  const [addedToCartList, setAddedToCartList] = useState([]);
+  const posts = useSelector((state) => state.posts.posts);
 
-const ProductsComponent = ({posts, postsLength, loading, setPosts}) => {
-    
   const removePost = (id) =>{
     setPosts(prevPost => prevPost.filter(item => item.id !== id))
   }
+  
+  const toggleAddedToCart = (index) =>{
+    setAddedToCartList(...addedToCartList, index)
+  }
+
+  console.log([addedToCartList, 'test'])
  
   return (
     <div className='productscompo'>
@@ -26,6 +35,13 @@ const ProductsComponent = ({posts, postsLength, loading, setPosts}) => {
                 <h1>{post.title}</h1>
                 <p>{post.body}</p>
                 <button className='remove'  onClick={()=>removePost(post.id)}>Remove Item</button>
+                <div className='addToCartIcons' onClick={()=>toggleAddedToCart(index)}>
+                  {
+                    addedToCartList.includes(index) ? 
+                    <img src={FilledHeart}/> :
+                    <img src={EmptyHeart}/>
+                  }
+                </div>
               </div>
            ))
         }

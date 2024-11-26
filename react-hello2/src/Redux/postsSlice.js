@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 
-
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {

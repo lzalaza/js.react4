@@ -7,7 +7,7 @@ const HeaderComponent = () => {
   return (
     <header>
     <nav className='headercomponent'>
-      <div className='log'><img src="./logo192.png" width="50px"/></div>
+      <div className='log'><img src="./logo192.png" width="90px"/></div>
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
