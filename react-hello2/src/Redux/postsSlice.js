@@ -23,12 +23,14 @@ const postsSlice = createSlice({
         },
        addCartItem: (state, action) =>{
         state.cartItem.push(action.payload)
-       }
+       },
+       removeitemFromCart: (state, action) => {
+        state.cartItems = state.cartItems.filter(post => post.id !== action.payload);
+    },
 
     },
 
 });
 
-export const { setPosts, addPosts, removePosts, addCartItem } = postsSlice.action;
-
+export const { setPosts, addPosts, removePosts, addCartItem, removeitemFromCart } = postsSlice.actions;
 export default postsSlice.reducer;

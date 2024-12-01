@@ -20,13 +20,15 @@ export const HomePage = () => {
       setLoading(false)
     })
 
-  
+
 },[])
+
 
 
 useEffect(()=>{
   setPostsLngth(posts.length)
 }, [posts] )
+
 
 return (
   <div className="App">
@@ -34,6 +36,11 @@ return (
 </div>
 );
 }
+
+
+
+
+
 
 export default HomePage;
 

@@ -10,15 +10,16 @@ import { addCartItem } from '../../Redux/postsSlice';
 const ProductsComponent = ({ postsLength, loading, setPosts}) => {
   const [addedToCartList, setAddedToCartList] = useState([]);
   const posts = useSelector((state) => state.posts.posts);
-
+  const cartItems = useSelector((state)=> state.posts.cartItems)
   const dispatch = useDispatch();
+
 
   const removePost = (id) =>{
     setPosts(prevPost => prevPost.filter(item => item.id !== id))
   }
   
-  const toggleAddedToCart = (index) =>{
-    dispatch(addCartItem())
+  const toggleAddedToCart = (index, post) =>{
+    dispatch(addCartItem(post))
     setAddedToCartList([...addedToCartList, index])
   }
 
@@ -37,8 +38,8 @@ const ProductsComponent = ({ postsLength, loading, setPosts}) => {
             <div className='potscnt' key={index}>
                 <h1>{post.title}</h1>
                 <p>{post.body}</p>
-                <button className='remove'  onClick={()=>removePost(post.id)}>Remove Item</button>
-                <div className='addToCartIcons' onClick={()=>toggleAddedToCart(index)}>
+                
+                <div className='addToCartIcons' onClick={()=>toggleAddedToCart(index, post)}>
                   {
                     addedToCartList.includes(index) ? 
                     <img src={FilledHeart}/> :
